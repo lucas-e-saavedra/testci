@@ -1,4 +1,4 @@
-version: 7
+version: 8
 jobs:
   build:
     branches:
@@ -44,6 +44,9 @@ jobs:
       - store_artifacts:
           path: app/build/outputs/bundle/
           destination: bundle/
-      - run:
-          name: Upload to Google Play
-          command: ./gradlew publishRelease
+#      - run:
+#          name: Upload to Google Play
+#          command: ./gradlew publishRelease
+# https://medium.com/@smutsaj/continuous-deployment-of-android-apps-with-circleci-tutorial-part-1-9e50959c9a6e
+# https://medium.com/@smutsaj/continuous-delivery-of-android-apps-with-circleci-2-branch-to-track-57b20af5cf36
+# https://github.com/Triple-T/gradle-play-publisher
