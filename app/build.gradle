@@ -1,8 +1,9 @@
-apply plugin: 'com.android.application'
-
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'com.github.triplet.play' version '2.0.0'
+}
 
 android {
     signingConfigs {
@@ -19,8 +20,8 @@ android {
         applicationId "com.tutin.testci"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "0.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -46,4 +47,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+// Configuration for com.github.triplet.play deployment
+play {
+    track = 'internal' // or alpha or beta...
+    serviceAccountCredentials = file('../OTHERS/tutacode-googleapi-1612-a4754170eb74.json')
+    defaultToAppBundles = true // Use App Bundle instead of APK
+    resolutionStrategy = "ignore" //If the deployment fails due to an API error, don't fail the CI Build
 }
