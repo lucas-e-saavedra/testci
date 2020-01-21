@@ -5,6 +5,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        releaseConfig {
+            storeFile file('../OTHERs/keystore.jks')
+            storePassword 'testCI'
+            keyAlias 'alias01'
+            keyPassword 'qwerty'
+            v2SigningEnabled false
+        }
+    }
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.tutin.testci"
@@ -16,8 +25,14 @@ android {
     }
     buildTypes {
         release {
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+        }
+        debug {
+            debuggable true
+            signingConfig signingConfigs.releaseConfig
         }
     }
 }
